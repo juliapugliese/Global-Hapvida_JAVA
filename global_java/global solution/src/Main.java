@@ -4,14 +4,17 @@ import UsuarioModel.Pessoa.*;
 import UsuarioModel.Teste.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
-    static ArrayList<Login> contasCadastradas;
+    static ArrayList<Conta> contasCadastradas;
     static ArrayList <Paciente> pacientes;
     static ArrayList <Medico> medicos;
+
+    static ArrayList <Consulta> consultas;
 
 
     static ArrayList<String> alergias;
@@ -33,6 +36,7 @@ public class Main {
         historicoMedico = new ArrayList<>();
 
         vacinacoes = new ArrayList<>();
+        consultas = new ArrayList<>();
 
         while (true) {
             System.out.println("""
@@ -53,7 +57,7 @@ public class Main {
                     System.out.println("Digite sua senha");
                     var senha = scanner.nextLine();
 
-                    Optional<Login> optional = contasCadastradas.stream()
+                    Optional<Conta> optional = contasCadastradas.stream()
                             .filter(pessoa -> pessoa.getNomeUsuario().equals(nomeUsuario) & pessoa.getSenha().equals(senha)).findAny();
 
                     if (optional.isPresent()) {
@@ -88,35 +92,49 @@ public class Main {
                     2) Cadastrar ficha médica \r
                         21) Imprimir fichas médicas \r
                     3) Agendar consulta \r
-                    4) Avaliar atendimento \r
-                    5) Chamar ambulância \r
-                    6) Timer remédios \r
+                    4) Cadastrar contatos \r
+                    5) Avaliar atendimento \r
+                    6) Chamar ambulância \r
+                    7) Timer remédios \r
                     0) Sair""");
 
             var opcao = scanner.nextInt();
             scanner.nextLine();
 
             switch (opcao) {
+                case 4 -> {
+                    System.out.println("Sincronizando contatos cadastrados..." );
+                    contasCadastradas.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getDonoConta().setContatos(sincronizarContatos(userName)));
+
+                    contasCadastradas.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getDonoConta().getContatos().add(cadastrarContatos()));
+
+                    //teste
+                    contasCadastradas.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> System.out.println("Contatos: " + login.getDonoConta().getContatos()));
+
+                }
                 case 3 -> {
                     agendarConsulta(contasCadastradas.stream()
-                            .filter(login -> login.getNomeUsuario().equals(userName)).map(Login::getDonoConta)
+                            .filter(login -> login.getNomeUsuario().equals(userName)).map(Conta::getDonoConta)
                             .findFirst().orElse(null));
                 }
                 case 2 -> {
                     System.out.println("Essa ficha médica é sua? sim/não");
                     var sn = scanner.nextLine().replaceAll("[áàâãä]", "a");
                     if (sn.equalsIgnoreCase("sim")) {
+                        System.out.println("\r\nIniciando o cadastro da ficha medica");
                         contasCadastradas.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login ->login.getDonoConta().setFichaMedica(cadastrarFichaMedica()));
 
                     } else if (sn.equalsIgnoreCase("nao")) {
+                        System.out.println("\r\nIniciando o cadastro da ficha medica");
                         contasCadastradas.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getFamiliares().add(cadastrarFichaMedicaFamiliares()));
                     } else {
                         System.out.println("Opção inválida");
                     }
                 }
                 case 21 -> {
-                    contasCadastradas.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> System.out.println(login.getDonoConta().getFichaMedica()));
-                    contasCadastradas.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getFamiliares().forEach(familiar -> System.out.println(familiar.getFichaMedica())));
+                    contasCadastradas.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> System.out.println(login.getDonoConta().toString() + login.getDonoConta().getFichaMedica()));
+                    contasCadastradas.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getFamiliares().forEach(familiar -> System.out.println(familiar.toString() + familiar.getFichaMedica())));
+
                     //imprime todas as fichas medicas
                 }
                 case 1 -> {
@@ -134,7 +152,7 @@ public class Main {
     }
 
     public static void criarConta() {
-        var novoUsuario = new Login();
+        var novoUsuario = new Conta();
 
         System.out.println("Iniciando o cadastro de usuário");
 
@@ -192,7 +210,6 @@ public class Main {
     public static FichaMedica cadastrarFichaMedica() {
         var novaFichaMedica = new FichaMedica();
 
-        System.out.println("\r\nIniciando o cadastro da ficha medica");
 
         System.out.println("Unidade de saúde que frequenta: ");
         novaFichaMedica.setNomeUnidadeSaudeFrequenta(scanner.nextLine());
@@ -289,12 +306,45 @@ public class Main {
         novaConsulta.setMotivo(scanner.nextLine());
 
         System.out.println("Digite o médico com quem ira se consultar: ");
-        medicos.stream().filter(medico -> medico.getNome().equalsIgnoreCase(scanner.nextLine())).forEach(cadastro -> cadastro.getConsultasAgendadas().add(novaConsulta));
+        var medicoConsulta = scanner.nextLine();
+        medicos.stream().filter(medico -> medico.getNome().equalsIgnoreCase(medicoConsulta)).forEach(cadastro -> cadastro.getConsultasAgendadas().add(novaConsulta));
+
+        System.out.println("Seu pedido será avaliado pelo médico e dentro de 48h você receberá uma confirmação por email");
+
+        System.out.println(novaConsulta);
+
+        consultas.add(novaConsulta);
 
     }
 
+    public  static List<Contatos> sincronizarContatos (String userName) {
 
+         List<Contatos> contatosDonoConta = new ArrayList<>();
+         var novoContato = new Contatos();
 
+        contasCadastradas.stream()
+                .filter(login -> login.getNomeUsuario().equals(userName))
+                .flatMap(login -> login.getFamiliares().stream())
+                .forEach(familiar -> {
+                    novoContato.setNome(familiar.getNome());
+                    novoContato.setTelefone(familiar.getTelefone());
+                    contatosDonoConta.add(novoContato);
+                });
+        return contatosDonoConta;
+
+    }
+    public  static Contatos cadastrarContatos (){
+        var novoContato = new Contatos();
+
+        System.out.println("Nome: ");
+        novoContato.setNome(scanner.nextLine());
+
+        System.out.println("Telefone: ");
+        novoContato.setTelefone(scanner.nextLine());
+
+        return novoContato;
+
+    }
 
     public static void cadastrarAlergia(int qtd){
         int contador = 0;

@@ -2,6 +2,7 @@ package UsuarioModel.Pessoa;
 
 import UsuarioModel.Acoes.FichaMedica;
 import UsuarioModel.Teste.Consulta;
+import UsuarioModel.Teste.Contatos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class Paciente {
     private String endereco;
     private int cep;
     private FichaMedica fichaMedica;
+    private List<Contatos> contatos;
 
     public Paciente(){
         this.id = contadorId;
@@ -121,6 +123,14 @@ public class Paciente {
         this.fichaMedica = fichaMedica;
     }
 
+    public List<Contatos> getContatos() {
+        return contatos;
+    }
+
+    public void setContatos(List<Contatos> contatos) {
+        this.contatos = contatos;
+    }
+
     @Override
     public String toString() {
         return  "Nome: " + nome + "\r\n" +
@@ -131,7 +141,7 @@ public class Paciente {
                 "CPF: " + cpf + "\r\n" +
                 "Telefone: " + telefone + "\r\n" +
                 "E-mail: " + email + "\r\n" +
-                "Endereço: " + endereco +
+                "Endereço: " + endereco + "\r\n" +
                 "CEP: " + cep + "\r\n";
     }
 }

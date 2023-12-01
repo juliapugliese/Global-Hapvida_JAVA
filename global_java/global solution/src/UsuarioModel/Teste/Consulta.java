@@ -10,6 +10,7 @@ public class Consulta {
     private Paciente paciente;
     private String dataConsulta;
     private String motivo;
+    private String medico;
 
     public Consulta(){
         this.id = contadorId;
@@ -54,11 +55,19 @@ public class Consulta {
         this.motivo = motivo;
     }
 
+    public String getMedico() {
+        return medico;
+    }
+
+    public void setMedico(String medico) {
+        this.medico = medico;
+    }
+
     @Override
     public String toString() {
         return "Consulta:" + "\r\n" +
-                "ID: " + id + "\r\n" +
-                "Dados paciente: " + paciente + "\r\n" +
+                "ID consulta: " + id + "\r\n" +
+                "Dados paciente: " + paciente +
                 "Data da consulta: " + dataConsulta + "\r\n" +
                 "Motivo: " + motivo ;
     }

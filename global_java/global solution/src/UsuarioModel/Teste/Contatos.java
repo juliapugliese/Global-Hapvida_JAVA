@@ -7,24 +7,34 @@ public class Contatos {
 
     private String nome;
     private String telefone;
-    static Scanner scanner = new Scanner(System.in);
 
-    public static void chamarAmbulancia(){
+    public Contatos() {
+    }
 
-        System.out.println("Diga o seu nome");
-        var nome = scanner.nextInt();
+    public Contatos(String nome, String telefone) {
+        this.nome = nome;
+        this.telefone = telefone;
+    }
 
+    public String getNome() {
+        return nome;
+    }
 
-        System.out.println("Diga o que esta acontencendo com você");
-        System.out.println("Captando audio...");
-        System.out.println("Captando localização do dispositivo...");
-        System.out.println("Captando numero de telefone do dispositivo...");
-        System.out.println("chamando ambulância... enviando ficha medica para o hospital");
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-        //O que você deve saber antes de ligar para o 192:
-        // 1 - o que aconteceu com o paciente;
-        //2 - endereço - rua, avenida, número, bairro e referência do local da ocorrência;
-        //3 - dados do paciente, como nome, idade e sexo;
-        //4 - o número do telefone de onde você está ligando.
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    @Override
+    public String toString() {
+        return  nome +  " " +
+                "Telefone: " + telefone;
     }
 }
