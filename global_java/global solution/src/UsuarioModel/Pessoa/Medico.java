@@ -1,6 +1,6 @@
 package UsuarioModel.Pessoa;
 
-import UsuarioModel.Teste.Consulta;
+import UsuarioModel.Acoes.Consulta;
 
 import java.util.ArrayList;
 import java.util.List;

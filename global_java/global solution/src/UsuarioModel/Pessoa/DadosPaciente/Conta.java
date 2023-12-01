@@ -1,4 +1,4 @@
-package UsuarioModel.Acoes;
+package UsuarioModel.Pessoa.DadosPaciente;
 
 import UsuarioModel.Pessoa.Paciente;
 

@@ -1,6 +1,10 @@
 import UsuarioModel.Acoes.*;
 import UsuarioModel.Medicamentos.Remedio;
 import UsuarioModel.Pessoa.*;
+import UsuarioModel.Pessoa.DadosPaciente.Conta;
+import UsuarioModel.Pessoa.DadosPaciente.Contatos;
+import UsuarioModel.Pessoa.DadosPaciente.FichaMedica;
+import UsuarioModel.Pessoa.DadosPaciente.HistoricoMedico;
 import UsuarioModel.Teste.*;
 
 import java.util.ArrayList;

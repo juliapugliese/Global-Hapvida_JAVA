@@ -1,10 +1,8 @@
 package UsuarioModel.Pessoa;
 
-import UsuarioModel.Acoes.FichaMedica;
-import UsuarioModel.Teste.Consulta;
-import UsuarioModel.Teste.Contatos;
+import UsuarioModel.Pessoa.DadosPaciente.FichaMedica;
+import UsuarioModel.Pessoa.DadosPaciente.Contatos;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Paciente {
