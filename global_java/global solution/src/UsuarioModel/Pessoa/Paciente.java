@@ -18,7 +18,7 @@ public class Paciente {
     private String email;
     private String endereco;
     private int cep;
-    private FichaMedica fichaMedica = new FichaMedica();
+    private FichaMedica fichaMedica;
 
     public Paciente(){
         this.id = contadorId;

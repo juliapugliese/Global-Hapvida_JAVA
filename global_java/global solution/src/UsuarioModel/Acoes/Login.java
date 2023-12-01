@@ -9,7 +9,7 @@ public class Login {
     private String nomeUsuario;
     private String senha;
     private Paciente donoConta;
-    private List<Paciente> terceiros = new ArrayList<>();
+    private List<Paciente> familiares = new ArrayList<>();
 
     public Login() {
     }
@@ -19,10 +19,10 @@ public class Login {
         this.senha = senha;
     }
 
-    public Login(String nomeUsuario, String senha, List<Paciente> terceiros) {
+    public Login(String nomeUsuario, String senha, List<Paciente> familiares) {
         this.nomeUsuario = nomeUsuario;
         this.senha = senha;
-        this.terceiros = terceiros;
+        this.familiares = familiares;
     }
 
     public String getNomeUsuario() {
@@ -41,12 +41,12 @@ public class Login {
         this.senha = senha;
     }
 
-    public List<Paciente> getTerceiros() {
-        return terceiros;
+    public List<Paciente> getFamiliares() {
+        return familiares;
     }
 
-    public void setTerceiros(List<Paciente> terceiros) {
-        this.terceiros = terceiros;
+    public void setFamiliares(List<Paciente> familiares) {
+        this.familiares = familiares;
     }
 
     public Paciente getDonoConta() {

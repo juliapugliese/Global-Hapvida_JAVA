@@ -2,12 +2,12 @@ package UsuarioModel.Teste;
 
 import UsuarioModel.Pessoa.Medico;
 import UsuarioModel.Acoes.FichaMedica;
+import UsuarioModel.Pessoa.Paciente;
 
 public class Consulta {
     private int id;
     private static int contadorId = 1;
-    private FichaMedica fichaMedica;
-    private Medico medico;
+    private Paciente paciente;
     private String dataConsulta;
     private String motivo;
 
@@ -15,10 +15,9 @@ public class Consulta {
         this.id = contadorId;
         contadorId += 1;
     }
-    public Consulta(int id, FichaMedica fichaMedica, Medico medico, String dataConsulta, String motivo) {
+    public Consulta(int id, Paciente paciente, String dataConsulta, String motivo) {
         this.id = id;
-        this.fichaMedica = fichaMedica;
-        this.medico = medico;
+        this.paciente = paciente;
         this.dataConsulta = dataConsulta;
         this.motivo = motivo;
     }
@@ -31,20 +30,12 @@ public class Consulta {
         this.id = id;
     }
 
-    public FichaMedica getFichaMedica() {
-        return fichaMedica;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setFichaMedica(FichaMedica fichaMedica) {
-        this.fichaMedica = fichaMedica;
-    }
-
-    public Medico getMedico() {
-        return medico;
-    }
-
-    public void setMedico(Medico medico) {
-        this.medico = medico;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
     public String getDataConsulta() {
@@ -67,8 +58,7 @@ public class Consulta {
     public String toString() {
         return "Consulta:" + "\r\n" +
                 "ID: " + id + "\r\n" +
-                "Ficha médica: " + fichaMedica + "\r\n" +
-                "Médico: " + medico +  "\r\n" +
+                "Dados paciente: " + paciente + "\r\n" +
                 "Data da consulta: " + dataConsulta + "\r\n" +
                 "Motivo: " + motivo ;
     }
