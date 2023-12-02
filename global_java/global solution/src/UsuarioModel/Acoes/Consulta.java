@@ -1,5 +1,6 @@
 package UsuarioModel.Acoes;
 
+import UsuarioModel.Pessoa.Medico;
 import UsuarioModel.Pessoa.Paciente;
 
 public class Consulta {
@@ -8,7 +9,7 @@ public class Consulta {
     private Paciente paciente;
     private String dataConsulta;
     private String motivo;
-    private String medico;
+    private Medico medico;
 
     public Consulta(){
         this.id = contadorId;
@@ -53,11 +54,11 @@ public class Consulta {
         this.motivo = motivo;
     }
 
-    public String getMedico() {
+    public Medico getMedico() {
         return medico;
     }
 
-    public void setMedico(String medico) {
+    public void setMedico(Medico medico) {
         this.medico = medico;
     }
 

@@ -311,6 +311,7 @@ public class Main {
 
         System.out.println("Digite o médico com quem ira se consultar: ");
         var medicoConsulta = scanner.nextLine();
+        novaConsulta.getMedico().setNome(medicoConsulta);
         medicos.stream().filter(medico -> medico.getNome().equalsIgnoreCase(medicoConsulta)).forEach(cadastro -> cadastro.getConsultasAgendadas().add(novaConsulta));
 
         System.out.println("Seu pedido será avaliado pelo médico e dentro de 48h você receberá uma confirmação por email");
@@ -337,7 +338,7 @@ public class Main {
         return contatosDonoConta;
 
     }
-    public  static Contatos cadastrarContatos (){
+    public  static Contatos cadastrarContatos(){
         var novoContato = new Contatos();
 
         System.out.println("Nome: ");
