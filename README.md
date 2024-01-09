@@ -1,4 +1,15 @@
-# Global_JAVA
+# Global Solution - Hapvida NotreDame Intermédica
+A Global Solution é um projeto acadêmico da FIAP que introduz os alunos a um desafio onde, utilizando técnicas, ferramentas, metodologias e boas práticas trabalhadas ao longo do curso eles devem solucionar algum problema da sociedade. O objetivo é capacitá-los a pensar e desenvolver um projeto que venha trazer grandes avanços na área proposta. 
+
+A fim de auxiliar os alunos no desenvolvimento dos seus projetos, a instituição traz uma empresa parceira, nesse caso a Hapvida NotreDame Intermédica, que está inserida no campo do tema escolhido para o desafio.
+
+### Tema da vez: 
+Inovação e Tecnologia Moldando o Futuro da Saúde: Prevenção, Automação e Precisão
+
+### Requisitos da disciplina Domain Driven Design:
+Crie um diagrama de classes com as entidades que seu projeto precisará, definindo atributos e métodos para cada classe, o implemente em um novo projeto Java usando uma IDE de sua escolha. Manipule os dados de, ao menos, dois objetos e exiba os valores contidos nos atributos.
+
+# Projeto 
 
 O projeto consiste em um menu de opções onde o usuário, por meio de um login, consiga marcar consultas, cadastrar dados de ficha médica, tanto dele como de familiares e armazenar seus contatos de emergência para que sejam facilmente encontrados em emergências.
 
