@@ -4,7 +4,7 @@ A Global Solution é um projeto acadêmico da FIAP que introduz os alunos a um d
 A fim de auxiliar os alunos no desenvolvimento dos seus projetos, a instituição traz uma empresa parceira, nesse caso a Hapvida NotreDame Intermédica, que está inserida no campo do tema escolhido para o desafio.
 
 ### Tema da vez: 
-Inovação e Tecnologia Moldando o Futuro da Saúde: Prevenção, Automação e Precisão
+Inovação e Tecnologia Moldando o Futuro da Saúde: Prevenção, Automação e Precisão.
 
 ### Requisitos da disciplina Domain Driven Design:
 Crie um diagrama de classes com as entidades que seu projeto precisará, definindo atributos e métodos para cada classe, o implemente em um novo projeto Java usando uma IDE de sua escolha. Manipule os dados de, ao menos, dois objetos e exiba os valores contidos nos atributos.
