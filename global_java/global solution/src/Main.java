@@ -214,25 +214,29 @@ public class Main {
     public static FichaMedica cadastrarFichaMedica() {
         var novaFichaMedica = new FichaMedica();
 
-
         System.out.println("Unidade de saúde que frequenta: ");
         novaFichaMedica.setNomeUnidadeSaudeFrequenta(scanner.nextLine());
 
+
         System.out.println("Tem alguma alergia?");
         var temAlergia = (scanner.nextLine()).replaceAll("[áàâãä]", "a");
-
         if (temAlergia.equalsIgnoreCase("sim")) {
             System.out.println("Quantas?");
             var qtd = scanner.nextInt(); scanner.nextLine();
             cadastrarAlergia(qtd);
             novaFichaMedica.setAlergia(alergias);
         }
+        else { novaFichaMedica.setAlergia(null); }
+
 
         System.out.println("Tipo sanguíneo: ");
         novaFichaMedica.setTipoSanguineo(scanner.nextLine());
 
+
         System.out.println("Tem alguma doença crônica? Qual? Caso contrário digite não");
-        novaFichaMedica.setDoencaCronica(scanner.nextLine());
+        if (scanner.nextLine().equalsIgnoreCase("nao")) { novaFichaMedica.setDoencaCronica(null); }
+        else {novaFichaMedica.setDoencaCronica(scanner.nextLine());}
+
 
         System.out.println("Usa algum medicamento continuamente? Caso contrário digite não");
         var usaMedicacao = (scanner.nextLine()).replaceAll("[áàâãä]", "a");
@@ -243,6 +247,7 @@ public class Main {
             novaFichaMedica.setMedicacaoContinua(medicamentosUsoContinuo); }
         else { novaFichaMedica.setHistoricoMedico(null); }
 
+
         System.out.println("Já ficou internada ou foi operada? Caso contrário digite não");
         var temHistoricoMedico = (scanner.nextLine()).replaceAll("[áàâãä]", "a");
         if (temHistoricoMedico.equalsIgnoreCase("sim")) {
@@ -252,8 +257,11 @@ public class Main {
             novaFichaMedica.setHistoricoMedico(historicoMedico); }
         else { novaFichaMedica.setHistoricoMedico(null); }
 
+
         System.out.println("Tem alguma deficiência? Qual? Caso contrário digite não");
-        novaFichaMedica.setDeficiencia(scanner.nextLine());
+        if (scanner.nextLine().equalsIgnoreCase("nao")) { novaFichaMedica.setDeficiencia(null); }
+        else {novaFichaMedica.setDeficiencia(scanner.nextLine());}
+
 
         System.out.println("\r\nFicha médica registrada com sucesso");
 
@@ -398,58 +406,5 @@ public class Main {
             medicamentosUsoContinuo.add(novoMedicamento);
         }
     }
-
-
-    //    public static void cadastrarFichaMedicaDonoConta(String userName) {
-//
-//        System.out.println("\r\nIniciando o cadastro da ficha medica");
-//
-//        System.out.println("Unidade de saúde que frequenta: ");
-//        usuariosCadastrados.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getDonoConta().setNomeUnidadeSaudeFrequenta(scanner.nextLine()));
-//
-//        System.out.println("Tem alguma alergia?");
-//        var temAlergia = (scanner.nextLine()).replaceAll("[áàâãä]", "a");
-//
-//        if (temAlergia.equalsIgnoreCase("sim")) {
-//            System.out.println("Quantas?");
-//            var qtd = scanner.nextInt(); scanner.nextLine();
-//            cadastrarAlergia(qtd);
-//            usuariosCadastrados.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getDonoConta().setAlergia(alergias));
-//        }
-//
-//        System.out.println("Tipo sanguíneo: ");
-//        usuariosCadastrados.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getDonoConta().setTipoSanguineo(scanner.nextLine()));
-//
-//
-//        System.out.println("Tem alguma doença crônica? Qual? Caso contrário digite não");
-//        usuariosCadastrados.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getDonoConta().setDoencaCronica(scanner.nextLine()));
-//
-//        System.out.println("Usa algum medicamento continuamente? Caso contrário digite não");
-//        var usaMedicacao = (scanner.nextLine()).replaceAll("[áàâãä]", "a");
-//        if (usaMedicacao.equalsIgnoreCase("sim")) {
-//            System.out.println("Quantos?");
-//            var qtd = scanner.nextInt(); scanner.nextLine();
-//            cadastrarMedicamentoUsoContinuo(qtd);
-//            usuariosCadastrados.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getDonoConta().setMedicacaoContinua(medicamentosUsoContinuo));
-//        }
-//        else { usuariosCadastrados.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getDonoConta().setMedicacaoContinua(null));
-//        }
-//
-//        System.out.println("Já ficou internada ou foi operada? Caso contrário digite não");
-//        var temHistoricoMedico = (scanner.nextLine()).replaceAll("[áàâãä]", "a");
-//        if (temHistoricoMedico.equalsIgnoreCase("sim")) {
-//            System.out.println("Quantas vezes?");
-//            var qtd = scanner.nextInt(); scanner.nextLine();
-//            cadastrarHistoricoMedico(qtd);
-//            usuariosCadastrados.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getDonoConta().setHistoricoMedico(historicoMedico));
-//        }
-//        else {usuariosCadastrados.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getDonoConta().setHistoricoMedico(null));
-//        }
-//
-//        System.out.println("Tem alguma deficiência? Qual? Caso contrário digite não");
-//        usuariosCadastrados.stream().filter(login -> login.getNomeUsuario().equals(userName)).forEach(login -> login.getDonoConta().setDeficiencia(scanner.nextLine()));
-//
-//        System.out.println("\r\nFicha médica registrada com sucesso");
-//    }
 
 }
